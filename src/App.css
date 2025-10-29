@@ -1,5 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 .App {
   text-align: center;
+  font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #282c34;
+  min-height: 100vh;
+  color: #dff1ff;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -14,18 +24,24 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 60px;
+  color: #dff1ff;
+  background-color: #282c34;
+  z-index: 1;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.unselectable {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @keyframes App-logo-spin {
