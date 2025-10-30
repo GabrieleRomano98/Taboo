@@ -166,8 +166,17 @@ function PlayingBottom(props) {
   const [nextCardIndex, setNextCardIndex] = useState((props.index + 1) % wordsLength);
   const [animationTrigger, setAnimationTrigger] = useState(null);
   const [limitLeft, setLimitLeft] = useState(props.limit);
+  
+  const advanceToNextCard = () => {
+    const newCurrentIndex = nextCardIndex;
+    const newNextIndex = (nextCardIndex + 1) % wordsLength;
+    setCurrentCardIndex(newCurrentIndex);
+    setNextCardIndex(newNextIndex);
+    props.setIndex(newCurrentIndex);
+  };
 
   useEffect(() => {
+    setTimeout(advanceToNextCard, 1000);
     if(props.redTurn || limitLeft === '∞' || limitLeft <= 0) {
       return;
     }
@@ -195,14 +204,6 @@ function PlayingBottom(props) {
   const controlButtonsStyle = {
     translate: props.paused ? "0 50vh" : 0,
     transition: "translate 0.5s " + (props.paused ? "ease-in-out":"")
-  };
-  
-  const advanceToNextCard = () => {
-    const newCurrentIndex = nextCardIndex;
-    const newNextIndex = (nextCardIndex + 1) % wordsLength;
-    setCurrentCardIndex(newCurrentIndex);
-    setNextCardIndex(newNextIndex);
-    props.setIndex(newCurrentIndex);
   };
   
   const correctAnswer = () => {
