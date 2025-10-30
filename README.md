@@ -1,70 +1,166 @@
-# Getting Started with Create React App
+# 🎮 Taboo Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, interactive web-based implementation of the classic Taboo word guessing game. Built with React and featuring intuitive animated card interactions.
 
-## Available Scripts
+## 🌐 Live Demo
 
-In the project directory, you can run:
+**Play now:** [https://gabrieleromano98.github.io/Taboo](https://gabrieleromano98.github.io/Taboo)
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🎯 Game Mechanics
+- **Interactive Card Deck**: Infinite scrolling through 600+ Italian words
+- **Easy Controls**: Swipe cards left (wrong) or right (correct)
+- **Button Controls**: Alternative tap controls for accessibility
+- **Customizable Settings**: Configure game duration, skips, and win conditions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🎨 User Experience
+- **Smooth Animations**: Card transitions with rotation and color feedback
+- **Mobile-First Design**: Optimized for touch devices and mobile browsers
+- **Responsive Layout**: Works seamlessly on desktop and mobile
+- **No Scroll Interface**: Full-screen game experience without scrolling
 
-### `npm test`
+### ⚙️ Game Settings
+- **Timer Options**: 30s, 1m, 2m, 3m, 5m per turn
+- **Skip Allowances**: 0, 1, 3, 5, or unlimited skips
+- **Win Conditions**: Play by turns (2-10+) or points (20-100+)
+- **Visual Feedback**: Color-coded card hints (green=correct, red=wrong, gray=skip)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Getting Started
 
-### `npm run build`
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/GabrieleRomano98/Taboo.git
+   cd Taboo
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Building for Production
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Deploying to GitHub Pages
 
-## Learn More
+```bash
+npm run deploy
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🎮 How to Play
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Setup**: Configure your preferred game settings (time, skips, win condition)
+2. **Start**: Tap "Start" to begin your turn
+3. **Play**: 
+   - **Swipe Right** or **Tap ✓**: Correct guess
+   - **Swipe Left** or **Tap ✗**: Wrong guess/pass
+   - **Swipe Down** or **Tap ↗**: Skip word
+4. **Cards**: Each card shows a word to guess and forbidden "taboo" words
+5. **Win**: Reach your target turns or points to win!
 
-### Code Splitting
+## 🛠️ Technology Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Frontend**: React 19.1.1
+- **Routing**: React Router DOM (HashRouter for GitHub Pages)
+- **Styling**: Custom CSS with Flexbox
+- **Icons**: React Icons
+- **Deployment**: GitHub Pages
+- **Build Tool**: Create React App
 
-### Analyzing the Bundle Size
+## 📱 Mobile Optimization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Touch-optimized card interactions
+- Responsive design for all screen sizes
+- Gesture recognition for swipe controls
+- Fixed viewport to prevent scrolling issues
+- Optimized for mobile browsers
 
-### Making a Progressive Web App
+## 🎨 Design Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Custom Fonts**: Bangers font for game aesthetic
+- **Animations**: Smooth card transitions and visual feedback
+- **Icons**: Intuitive control buttons with React Icons
+- **Layout**: Mobile-first responsive design
 
-### Advanced Configuration
+## 📂 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+src/
+├── components/
+│   ├── home/          # Home page and settings
+│   ├── playing/       # Game interface and card logic
+│   └── various/       # Shared components (buttons, etc.)
+├── data/
+│   └── italianWords.js # Word database (600+ words)
+├── App.js             # Main app and routing
+└── index.js           # React entry point
+```
 
-### Deployment
+## 🔧 Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Adding New Words
+Edit `src/data/italianWords.js` to add new words to the game:
 
-### `npm run build` fails to minify
+```javascript
+{
+  word: "ESEMPIO",
+  taboos: ["vietato1", "vietato2", "vietato3", "vietato4", "vietato5"]
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Customizing Settings
+Modify default values in `src/App.js`:
+
+```javascript
+const [time, setTime] = useState("30s");
+const [skips, setSkips] = useState(0);
+const [limitType, setLimitType] = useState("Turns");
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👤 Author
+
+**Gabriele Romano**
+- GitHub: [@GabrieleRomano98](https://github.com/GabrieleRomano98)
+
+## 🎯 Future Enhancements
+
+- [ ] Multiplayer support
+- [ ] Score tracking and statistics
+- [ ] Multiple languages support
+- [ ] Custom word packs
+- [ ] Sound effects and music
+- [ ] Team management system
+
+---
+
+**Enjoy playing Taboo!** 🎉

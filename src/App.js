@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './home/Home.js';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ function App() {
       <header className="App-header">
         <div>Taboo</div>
       </header>
-      <BrowserRouter><Routes>
+      <HashRouter><Routes>
 
         <Route path="/" element={<Home  time={time} setTime={setTime}
                                         skips={skips} setSkips={setSkips}
@@ -27,7 +27,7 @@ function App() {
         <Route path="/playing" element={<Playing  index={index} setIndex={setIndex}
                                                   time={time} skips={skips} limitType={limitType}
                                                   limit={limitType==="Turns" ? limitTurns+1 : limitPoints}/>}/>
-      </Routes></BrowserRouter>
+      </Routes></HashRouter>
     </div>
   );
 }
