@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Taboo/static/css/main.ed5ecb0c.css",
-    "main.js": "/Taboo/static/js/main.b2678cd3.js",
+    "main.css": "/Taboo/static/css/main.3273bc5e.css",
+    "main.js": "/Taboo/static/js/main.166551f1.js",
     "static/js/453.3ca4be2e.chunk.js": "/Taboo/static/js/453.3ca4be2e.chunk.js",
     "index.html": "/Taboo/index.html",
-    "main.ed5ecb0c.css.map": "/Taboo/static/css/main.ed5ecb0c.css.map",
-    "main.b2678cd3.js.map": "/Taboo/static/js/main.b2678cd3.js.map",
+    "main.3273bc5e.css.map": "/Taboo/static/css/main.3273bc5e.css.map",
+    "main.166551f1.js.map": "/Taboo/static/js/main.166551f1.js.map",
     "453.3ca4be2e.chunk.js.map": "/Taboo/static/js/453.3ca4be2e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ed5ecb0c.css",
-    "static/js/main.b2678cd3.js"
+    "static/css/main.3273bc5e.css",
+    "static/js/main.166551f1.js"
   ]
 }
