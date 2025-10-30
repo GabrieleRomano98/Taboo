@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Taboo/static/css/main.874df7da.css",
+    "main.js": "/Taboo/static/js/main.e77e5112.js",
+    "static/js/453.a66701e9.chunk.js": "/Taboo/static/js/453.a66701e9.chunk.js",
+    "index.html": "/Taboo/index.html",
+    "main.874df7da.css.map": "/Taboo/static/css/main.874df7da.css.map",
+    "main.e77e5112.js.map": "/Taboo/static/js/main.e77e5112.js.map",
+    "453.a66701e9.chunk.js.map": "/Taboo/static/js/453.a66701e9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.874df7da.css",
+    "static/js/main.e77e5112.js"
+  ]
+}
