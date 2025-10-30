@@ -3,35 +3,144 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.5s ease;
 }
 
 .playing-top {
     border-bottom: #dff1ff;
     border-bottom-style: solid;
     box-shadow: 6px 6px rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    z-index: 3;
     border-radius: 0 0 10px 10px;
     background-color: #282c34;
     padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
     padding: 0px 15px 10px;
+    position: relative;
+    top: -1px;
+    transition: padding-top .5s linear;
 }
 
 .timebar {
     border-style: solid;
     height: 40%;
     border-color: #dff1ff;
+    border-radius: 10px;
 }
 
 .timebar-content {
     display: block;
+    height: 100%;
+    border-radius: 5px;
+    position: relative;
+    z-index: -1;
+    transition: width 1s linear;
+}
+
+.resume-button {
+    width: 60%;
+    font-size: 36px;
+    align-self: center;
+    position: absolute;
+    top: 30%;
+    z-index: 1;
+}
+
+.cards-container {
+    flex: 1;
     width: 100%;
+    text-align: -webkit-center;
+    position: relative;
+}
+
+.game-card {
+    width: 70%;
+    background-color: #dff1ff;
+    color: #282c34;
+    padding: 20px 10px;
     border-radius: 10px;
+    border-style: solid;
+    flex: 1;
+    box-shadow: 6px 6px rgba(0, 0, 0, 0.5);
+    position: relative;
+    touch-action: none;
+    z-index: 1;
+}
+
+.card-below {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0) !important;
+    z-index: 0;
+}
+
+.game-card:active {
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.7);
+    transform: scale(1.02);
 }
 
 .playing-bottom {
+    padding: 20px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
     flex: 1;
-    background-color: #f57b51;
+}
+
+.card-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px !important;
+    letter-spacing: 2px;
+}
+
+.taboo-word {
+    font-size: 26px;
+}
+
+.buttons-container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    padding: 0 10px;
+    gap: 25px;
+    padding: 20px 15px;
+    align-items: center;
+    z-index: 3;
+}
+
+.control-button {
+    align-content: center;
+    flex: 3;
+    font-size: 32px;
+    aspect-ratio: 1 / 1;
+    border-radius: 30px;
+}
+
+.center-button {
+    font-size: 40px;
+    height: 70%;
+    flex: 2;
+}
+
+.winner-message {
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: #282c34;
+}
+
+.quit-button {
+    position:static;
+}
+
+.quit-section {
+    display: flex;
+    flex-direction: column;
 }

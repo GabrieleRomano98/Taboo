@@ -1,27 +1,25 @@
 import { useState } from 'react';
-import './home.css';
-import { Carousel } from "react-bootstrap";
 import { Button } from '../various/Button';
 import { useNavigate } from 'react-router-dom';
+import './home.css';
 
-function SettingsCarousel(props) {
+function Settings(props) {
   const elementStyle = {
     height: "100px",
     fontSize: "30px",
     fontWeight: "bold",
-    marginTop: "-30px"
+    marginTop: "-30px",
+    cursor: "pointer"
   };
   const onSelect = index => props.setSelected(props.values[index]);
   return (
-    <Carousel className="mb-3" style={{width: "100%"}} interval={null} onSelect={onSelect}>
+    <div style={{display: "flex", justifyContent: "space-around", marginTop: "25px"}}>
       {props.values.map((value, i) =>
-        <Carousel.Item key={value + i}>
-          <div className="d-flex justify-content-center align-items-center" style={elementStyle} >
-            {value}
-          </div>
-        </Carousel.Item>
+        <div key={value + i} style={{...elementStyle, opacity: props.selected === value ? 1 : 0.5}} onClick={() => onSelect(i)}>
+          {value}
+        </div>
       )}
-    </Carousel>
+    </div>
   );
 }
 
@@ -40,36 +38,37 @@ function ControlLimitType(props) {
 }
 
 function Home(props) {
+  const [starting, setStarting] = useState(false);
   const limSettingsValues = {
-    Turns: [[2, 4, 6, 8, 10, "∞"], props.setLimitTurns],
-    Points: [[20, 30, 50, 100, "∞"], props.setLimitPoints]
+    Turns: [[2, 4, 6, 8, 10, "∞"], props.setLimitTurns, props.limitTurns],
+    Points: [[20, 30, 50, 100, "∞"], props.setLimitPoints, props.limitPoints]
   };
-  const [limSettings, setLimSettings] = useState(limSettingsValues.Turns);
-  const switchLimType = type => {
-    setLimSettings(limSettingsValues[type]);
-    props.setLimitType(type)
-  }
   const settings = [
-    ["Time",  ["00:30", "01:00", "02:00", "03:00", "05:00"], props.setTime],
-    ["Skips", [0, 5, 10, 15, "∞"], props.setSkips],
+    ["Time",  ["30s", "1m", "2m", "3m", "5m"], props.setTime, props.time],
+    ["Skips", [0, 1, 3, 5, "∞"], props.setSkips, props.skips],
   ];
   const settingsLabelStyle = {fontSize: "35px", color: "#f9f871"};
   const navigate = useNavigate();
   const startGame = () => {
-    navigate("/playing");
+    setStarting(true);
+    setTimeout(() => navigate("/playing"), 500);
   };
-  return ( 
+  const settingsGroupStyle = i => ({ translate: starting && `${(i*2-1)*100}vh 0` });
+  return (
     <div className="container unselectable">
-      {settings.map(setting =><div style={{width: "100%"}} key={setting[0]}>
-        <div style={settingsLabelStyle}>{setting[0]}</div>
-        <SettingsCarousel values={setting[1]} setSelected={setting[2]}/>
-      </div>)}
-      <div style={{width: "100%"}}  key={"Limit"}>
+      {settings.map((setting, i) =>
+        <div className='settings-group' style={settingsGroupStyle(i)} key={setting[0]}>
+          <div style={settingsLabelStyle}>{setting[0]}</div>
+          <Settings values={setting[1]} setSelected={setting[2]} selected={setting[3]}/>
+        </div>
+      )}
+      <div className='settings-group' style={settingsGroupStyle(0)} key={"Limit"}>
         <div style={settingsLabelStyle}>Limit</div>
-        <ControlLimitType selected={props.limitType} setSelected={switchLimType} />
-        <SettingsCarousel values={limSettings[0]} setSelected={limSettings[1]}/>
+        <ControlLimitType selected={props.limitType} setSelected={props.setLimitType} />
+        <Settings values={limSettingsValues[props.limitType][0]} setSelected={limSettingsValues[props.limitType][1]} selected={limSettingsValues[props.limitType][2]}/>
       </div>
-      <Button className="start-button" onClick={startGame} color={"#18b385"} text={"Start"}/>
+      <Button className="start-button" onClick={startGame}
+              color={"#18b385"} text={"Start"} style={{translate: starting && `0 100vh`}}/>
     </div>
   );
 }

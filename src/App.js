@@ -1,28 +1,16 @@
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './home/Home.js';
 import { useState } from 'react';
 import Playing from './playing/Playing.js';
 
-const baseUsersData = {
-  red: {
-    score: 0,
-    usedSkips: 0
-  },
-  blue: {
-    score: 0,
-    usedSkips: 0
-  }
-}
-
 function App() {
-  const [time, setTime] = useState("00:30");
+  const [time, setTime] = useState("30s");
   const [skips, setSkips] = useState(0);
   const [limitType, setLimitType] = useState("Turns");
-  const [limitTurns, setLimitTurns] = useState("2");
-  const [limitPoints, setLimitPoints] = useState("20");
-  const [team, setTeam] = useState("Red");
-  const [usersData, setUsersData] = useState(baseUsersData);
+  const [limitTurns, setLimitTurns] = useState(2);
+  const [limitPoints, setLimitPoints] = useState(20);
+  const [index, setIndex] = useState(0);
 
   return (
     <div className="App">
@@ -31,12 +19,14 @@ function App() {
       </header>
       <BrowserRouter><Routes>
 
-        <Route path="/" element={<Home  setTime={setTime} setSkips={setSkips}
+        <Route path="/" element={<Home  time={time} setTime={setTime}
+                                        skips={skips} setSkips={setSkips}
                                         limitType={limitType} setLimitType={setLimitType}
-                                        setLimitTurns={setLimitTurns} setLimitPoints={setLimitPoints}/>}/>
-        <Route path="/playing" element={<Playing  usersData={usersData} setUsersData={setUsersData}
-                                                  time={time} skips={skips}/>}/>
-        <Route path="/endturn" element={<div>endturn</div>}/>
+                                        limitTurns={limitTurns} setLimitTurns={setLimitTurns}
+                                        limitPoints={limitPoints} setLimitPoints={setLimitPoints}/>}/>
+        <Route path="/playing" element={<Playing  index={index} setIndex={setIndex}
+                                                  time={time} skips={skips} limitType={limitType}
+                                                  limit={limitType==="Turns" ? limitTurns+1 : limitPoints}/>}/>
       </Routes></BrowserRouter>
     </div>
   );

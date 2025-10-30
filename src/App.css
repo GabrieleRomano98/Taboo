@@ -6,10 +6,10 @@
   font-weight: 400;
   font-style: normal;
   background-color: #282c34;
-  min-height: 100vh;
   color: #dff1ff;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .App-logo {
@@ -31,7 +31,7 @@
   font-size: 60px;
   color: #dff1ff;
   background-color: #282c34;
-  z-index: 1;
+  z-index: 3;
 }
 
 .App-link {

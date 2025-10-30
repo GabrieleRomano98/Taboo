@@ -9,10 +9,16 @@
 }
 
 .carousel-item > div {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .start-button {
-    font-size: 30px;
-    width: 80%;
+  font-size: 30px;
+  width: 80%;
+  transition: translate 0.5s ease-in-out;
+}
+
+.settings-group {
+  width: 100%;
+  transition: translate 0.5s ease-in-out;
 }
