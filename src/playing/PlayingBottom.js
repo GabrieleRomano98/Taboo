@@ -166,6 +166,7 @@ function PlayingBottom(props) {
   const [nextCardIndex, setNextCardIndex] = useState((props.index + 1) % wordsLength);
   const [animationTrigger, setAnimationTrigger] = useState(null);
   const [limitLeft, setLimitLeft] = useState(props.limit);
+  const [hideCards, setHideCards] = useState(false);
   
   const advanceToNextCard = () => {
     const newCurrentIndex = nextCardIndex;
@@ -177,11 +178,15 @@ function PlayingBottom(props) {
 
   useEffect(() => {
     setTimeout(advanceToNextCard, 1000);
-    if(props.redTurn || limitLeft === '∞' || limitLeft <= 0) {
+    if(props.redTurn || props.limitType === 'No limits' || limitLeft <= 0) {
       return;
     }
-    setLimitLeft(props.limitType === "Turns" ? (limitLeft - 1)
-                 : props.limit - Math.max(props.points[0], props.points[1]));
+    const newLimitLeft = props.limitType === "Turns" ? (limitLeft - 1)
+                         : props.limit - Math.max(props.points[0], props.points[1]);
+    if(newLimitLeft <= 0) {
+      setTimeout(() => setHideCards(true), 1000);
+    }
+    setLimitLeft(newLimitLeft);
 
   }, [props.redTurn]);
   
@@ -240,7 +245,7 @@ function PlayingBottom(props) {
 
   return (
     <div className="playing-bottom">
-      { limitLeft === '∞' || limitLeft > 0 ?
+      { props.limitType === 'No limits' || limitLeft > 0 ?
         <Button className="resume-button" onClick={handleStart} style={startButtonStyle}
                 color={"#18b385"} text={props.started ? "Resume" : "Start turn"}/>
         : <div className="quit-section" style={startButtonStyle}>
@@ -249,7 +254,7 @@ function PlayingBottom(props) {
                     color={"#9dadbc"} text="Quit"/>
           </div>
       }
-      <div className='cards-container'>
+      {!hideCards && <div className='cards-container'>
         <Card 
           key={`next-${nextCardIndex}`}
           correctAnswer={correctAnswer} 
@@ -272,7 +277,7 @@ function PlayingBottom(props) {
           isTopCard={true}
           trigger={animationTrigger}
         />
-      </div>
+      </div>}
       <div className='buttons-container' style={controlButtonsStyle}>
         <Button onClick={handleWrongButton} className="control-button"
                 color={"#f84f4fff"} text={<ImCross />}/>

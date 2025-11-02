@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PlayingBottom from './PlayingBottom.js';
 import PlayingTop from './PlayingTop.js';
 import './playing.css';
@@ -10,9 +10,11 @@ function Playing(props) {
   const [points, setPoints] = useState([0, 0]);
   const [skipsLeft, setSkipsLeft] = useState(props.skips);
   const [hidden, setHidden] = useState(true);
-  setTimeout(() => {
-    setHidden(false);
-  }, 40);
+  useEffect(() => {
+    setTimeout(() => {
+      setHidden(false);
+    }, 40);
+  }, []);
   const timeUp = () => {
     setStarted(false);
     setRedTurn(!redTurn);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../various/Button';
 import { useNavigate } from 'react-router-dom';
 import './home.css';
@@ -14,7 +14,7 @@ function Settings(props) {
   const onSelect = index => props.setSelected(props.values[index]);
   return (
     <div style={{display: "flex", justifyContent: "space-around", marginTop: "25px"}}>
-      {props.values.map((value, i) =>
+      {props.values?.map((value, i) =>
         <div key={value + i} style={{...elementStyle, opacity: props.selected === value ? 1 : 0.5}} onClick={() => onSelect(i)}>
           {value}
         </div>
@@ -26,7 +26,7 @@ function Settings(props) {
 function ControlLimitType(props) {
   const selectedStyle = {  textDecoration: "underline" };
   const unselectedStyle = { opacity: "50%" };
-  const limitTypes = ["Turns", "Points"];
+  const limitTypes = ["Turns", "Points", "No limits"];
   return (
     <div style={{display: "flex", justifyContent: "space-around", fontSize: "30px"}}>
       {limitTypes.map(type => 
@@ -38,14 +38,18 @@ function ControlLimitType(props) {
 }
 
 function Home(props) {
-  const [starting, setStarting] = useState(false);
+  const [starting, setStarting] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setStarting(false), 40);
+  }, []);
   const limSettingsValues = {
-    Turns: [[2, 4, 6, 8, 10, "∞"], props.setLimitTurns, props.limitTurns],
-    Points: [[20, 30, 50, 100, "∞"], props.setLimitPoints, props.limitPoints]
+    Turns: [[2, 3, 5, 10, 15], props.setLimitTurns, props.limitTurns],
+    Points: [[15, 20, 30, 50], props.setLimitPoints, props.limitPoints],
+    "No limits": [[null], () => {}, null]
   };
   const settings = [
     ["Time",  ["30s", "1m", "2m", "3m", "5m"], props.setTime, props.time],
-    ["Skips", [0, 1, 3, 5, "∞"], props.setSkips, props.skips],
+    ["Skips", [0, 1, 3, 5, "∞"], props.setSkips, props.skips]
   ];
   const settingsLabelStyle = {fontSize: "35px", color: "#f9f871"};
   const navigate = useNavigate();
@@ -65,7 +69,9 @@ function Home(props) {
       <div className='settings-group' style={settingsGroupStyle(0)} key={"Limit"}>
         <div style={settingsLabelStyle}>Limit</div>
         <ControlLimitType selected={props.limitType} setSelected={props.setLimitType} />
-        <Settings values={limSettingsValues[props.limitType][0]} setSelected={limSettingsValues[props.limitType][1]} selected={limSettingsValues[props.limitType][2]}/>
+        <Settings values={limSettingsValues[props.limitType]?.[0]}
+                  setSelected={limSettingsValues[props.limitType]?.[1]}
+                  selected={limSettingsValues[props.limitType]?.[2]}/>
       </div>
       <Button className="start-button" onClick={startGame}
               color={"#18b385"} text={"Start"} style={{translate: starting && `0 100vh`}}/>
